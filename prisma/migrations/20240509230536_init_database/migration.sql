@@ -3,6 +3,7 @@ CREATE TABLE "Restaurant" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "imageUrl" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
     "deliveryFee" DECIMAL(10,2) NOT NULL,
     "deliveryTimeMinutes" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -26,6 +27,7 @@ CREATE TABLE "Category" (
 CREATE TABLE "Product" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
     "imageUrl" TEXT NOT NULL,
     "price" DECIMAL(10,2) NOT NULL,
     "discountPercentage" INTEGER NOT NULL DEFAULT 0,
