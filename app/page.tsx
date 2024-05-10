@@ -2,6 +2,9 @@ import Image from "next/image";
 import CategoryList from "./_components/category-list";
 import Header from "./_components/header";
 import Search from "./_components/search";
+import ProductList from "./_components/product-list";
+import { Button } from "./_components/ui/button";
+import { ChevronRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -23,6 +26,19 @@ export default function Home() {
           sizes="100vw"
           quality={100}
         />
+      </div>
+      <div className="space-y-4 py-4">
+        <div className="flex items-center justify-between px-5">
+          <h2 className="font-bold">Pedidos Recomendados</h2>
+          <Button
+            variant={"ghost"}
+            className="h-fit p-0 text-primary hover:bg-transparent"
+          >
+            Ver Todos
+            <ChevronRight size={16} />
+          </Button>
+        </div>
+        <ProductList />
       </div>
     </>
   );
