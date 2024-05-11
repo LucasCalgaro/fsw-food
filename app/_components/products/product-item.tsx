@@ -3,7 +3,7 @@ import Image from "next/image";
 import {
   calculateProductTotalPrice,
   formatCurrency,
-} from "../_lib/_helpers/price";
+} from "../../_lib/_helpers/price";
 import { ArrowDownIcon } from "lucide-react";
 
 interface ProductItemProps {

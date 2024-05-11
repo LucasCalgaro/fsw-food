@@ -1,8 +1,8 @@
 import { Restaurant } from "@prisma/client";
 import { BikeIcon, Heart, Star, TimerIcon } from "lucide-react";
 import Image from "next/image";
-import { formatCurrency } from "../_lib/_helpers/price";
-import { Button } from "./ui/button";
+import { formatCurrency } from "../../_lib/_helpers/price";
+import { Button } from "../ui/button";
 
 interface RestaurantItemProps {
   restaurant: Restaurant;

@@ -1,4 +1,4 @@
-import { db } from "../_lib/prisma";
+import { db } from "../../_lib/prisma";
 import CategoryItem from "./category-item";
 
 const CategoryList = async () => {
@@ -7,7 +7,7 @@ const CategoryList = async () => {
   console.log(categories);
 
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="flex gap-4 overflow-x-scroll px-5 py-2 [&::-webkit-scrollbar]:hidden">
       {categories.map((category) => (
         <CategoryItem key={category.id} category={category} />
       ))}

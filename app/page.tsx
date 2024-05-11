@@ -1,12 +1,12 @@
-import CategoryList from "./_components/category-list";
+import CategoryList from "./_components/categories/category-list";
 import Header from "./_components/header";
 import Search from "./_components/search";
-import ProductList from "./_components/product-list";
+import ProductList from "./_components/products/product-list";
 import { Button } from "./_components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { db } from "./_lib/prisma";
 import PromoBanner from "./_components/promo-banner";
-import RestaurantList from "./_components/restaurant-list";
+import RestaurantList from "./_components/restaurants/restaurant-list";
 
 export default async function Home() {
   const products = await db.product.findMany({
@@ -31,7 +31,7 @@ export default async function Home() {
       <div className="px-5 py-4">
         <Search />
       </div>
-      <div className="px-5 py-4">
+      <div className="py-4">
         <CategoryList />
       </div>
       <div className="px-1 py-4">
