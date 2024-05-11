@@ -1,7 +1,8 @@
 import { Restaurant } from "@prisma/client";
-import { BikeIcon, Star, TimerIcon } from "lucide-react";
+import { BikeIcon, Heart, Star, TimerIcon } from "lucide-react";
 import Image from "next/image";
 import { formatCurrency } from "../_lib/_helpers/price";
+import { Button } from "./ui/button";
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
@@ -18,20 +19,23 @@ const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
         />
 
         <div className="absolute left-2 top-2 flex items-center gap-1 rounded-full bg-white px-2 py-[2px] text-sm font-semibold text-black">
-          <Star size={14} className="fill-yellow-400 text-yellow-400" /> 5,0
+          <Star size={14} className="fill-yellow-400 text-yellow-400" /> 5.0
         </div>
+        <Button className="absolute right-2 top-2 h-8 w-8 rounded-full bg-accent-foreground p-2">
+          <Heart className="fill-white text-white" />
+        </Button>
       </div>
       <div className="space-y-1">
         <h2 className="text-sm font-semibold">{restaurant.name}</h2>
-        <div className="flex gap-4">
-          <div className="flex gap-1 text-xs text-foreground">
-            <BikeIcon size={16} className="text-primary" />{" "}
+        <div className="flex gap-4 text-xs text-foreground">
+          <div className="flex gap-1">
+            <BikeIcon size={14} className="text-primary" />{" "}
             {Number(restaurant.deliveryFee) == 0
               ? `Entrega Grátis`
               : `${formatCurrency(Number(restaurant.deliveryFee))}`}
           </div>
-          <div className="flex gap-1 text-xs text-foreground">
-            <TimerIcon size={16} className="text-primary" />{" "}
+          <div className="flex gap-1">
+            <TimerIcon size={14} className="text-primary" />{" "}
             {Number(restaurant.deliveryTimeMinutes)} min
           </div>
         </div>
