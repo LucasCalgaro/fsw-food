@@ -2,7 +2,6 @@ import { db } from "@/app/_lib/prisma";
 import { notFound } from "next/navigation";
 import ProductImage from "./components/product-image";
 import ProductDetails from "./components/product-details";
-import ProductList from "@/app/_components/products/product-list";
 
 interface ProductPageProps {
   params: {
@@ -40,12 +39,7 @@ const ProductPage = async ({ params: { id } }: ProductPageProps) => {
   return (
     <div>
       <ProductImage product={product} />
-      <ProductDetails product={product} />
-
-      <div className="space-y-2">
-        <h2 className="ml-4 font-semibold">Produtos relacionados</h2>
-        <ProductList products={relatedProducts} />
-      </div>
+      <ProductDetails product={product} relatedProducts={relatedProducts} />
     </div>
   );
 };
