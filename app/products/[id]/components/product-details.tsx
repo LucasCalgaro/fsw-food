@@ -1,15 +1,16 @@
 "use client";
 import DiscountBadge from "@/app/_components/discount-badge";
 import ProductList from "@/app/_components/products/product-list";
+import DeliveryInfo from "@/app/_components/restaurants/delivery-info";
 import { Button } from "@/app/_components/ui/button";
-import { Card } from "@/app/_components/ui/card";
 import {
   calculateProductTotalPrice,
   formatCurrency,
 } from "@/app/_lib/_helpers/price";
 import { Prisma } from "@prisma/client";
-import { Bike, MinusIcon, PlusIcon, Timer } from "lucide-react";
+import { MinusIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 interface ProductDetailsProps {
@@ -31,19 +32,21 @@ const ProductDetails = ({ product, relatedProducts }: ProductDetailsProps) => {
   return (
     <>
       <div className="relative mt-[-40px] rounded-t-2xl bg-[#f4f4f5] p-5">
-        <div className="flex items-center gap-2">
-          <div className="relative h-8 w-8">
-            <Image
-              src={product.restaurant.imageUrl}
-              alt={product.restaurant.name}
-              fill
-              className="rounded-full object-cover"
-            />
+        <Link href={`/restaurants/${product.restaurant.id}`}>
+          <div className="flex items-center gap-2">
+            <div className="relative h-8 w-8">
+              <Image
+                src={product.restaurant.imageUrl}
+                alt={product.restaurant.name}
+                fill
+                className="rounded-full object-cover"
+              />
+            </div>
+            <span className="text-sm text-muted-foreground">
+              {product.restaurant.name}
+            </span>
           </div>
-          <span className="text-sm text-muted-foreground">
-            {product.restaurant.name}
-          </span>
-        </div>
+        </Link>
 
         <h1 className="mb-2 mt-1 text-xl font-semibold">{product.name}</h1>
         <div className="flex justify-between">
@@ -88,30 +91,7 @@ const ProductDetails = ({ product, relatedProducts }: ProductDetailsProps) => {
           </div>
         </div>
 
-        <Card className="mt-6 flex justify-around py-3">
-          <div className="flex flex-col items-center gap-2">
-            <div className="flex items-center gap-1 text-muted-foreground">
-              <span className="text-xs">Entrega</span>
-              <Bike size={14} />
-            </div>
-            {Number(product.restaurant.deliveryFee) > 0 ? (
-              <p className="text-sm font-semibold">
-                {formatCurrency(Number(product.restaurant.deliveryFee))}
-              </p>
-            ) : (
-              <p className="text-sm font-semibold">Gratis</p>
-            )}
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="flex items-center gap-1 text-muted-foreground">
-              <span className="text-xs">Entrega</span>
-              <Timer size={14} />
-            </div>
-            <p className="text-sm font-semibold">
-              {product.restaurant.deliveryTimeMinutes} min
-            </p>
-          </div>
-        </Card>
+        <DeliveryInfo restaurant={product.restaurant} />
 
         <div className="mt-6 space-y-3">
           <h3 className="font-semibold">Sobre</h3>
